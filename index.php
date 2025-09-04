@@ -139,12 +139,9 @@ while($row = $res->fetch_assoc()):
     <div class="mt-3">
         <h5><?= htmlspecialchars($row['nombre']) ?></h5>
         <p><?= htmlspecialchars($row['descripcion']) ?></p>
-        <button class="btn btn-light btn-lg like-btn" data-id="<?= $row['id'] ?>">
-              👍 <span id="like-<?= $row['id'] ?>"><?= $row['likes'] ?></span>
-            </button>
-            <button class="btn btn-danger btn-lg heart-btn" data-id="<?= $row['id'] ?>">
-              ❤️ <span id="heart-<?= $row['id'] ?>"><?= $row['corazones'] ?></span>
-            </button>
+       <button class="btn btn-light btn-lg like-btn" data-id="<?= $row['id'] ?>">👍 <span id="like-<?= $row['id'] ?>"><?= $row['likes'] ?></span></button>
+      <button class="btn btn-danger btn-lg heart-btn" data-id="<?= $row['id'] ?>">❤️ <span id="heart-<?= $row['id'] ?>"><?= $row['corazones'] ?></span></button>
+
     </div>
 </div>
 <?php 
@@ -155,7 +152,7 @@ endwhile;
 
 
   </div>
- <button class="carousel-control-prev" type="button" data-bs-target="#carouselFotos" data-bs-slide="prev">
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselFotos" data-bs-slide="prev">
     <span class="carousel-control-prev-icon"></span>
   </button>
   <button class="carousel-control-next" type="button" data-bs-target="#carouselFotos" data-bs-slide="next">
@@ -165,30 +162,30 @@ endwhile;
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-function actualizarLikes(id, tipo) {
-  fetch("like.php", {   // ✅ debe ser el archivo correcto
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: "id=" + id + "&tipo=" + tipo
-  })
-  .then(r => r.json())
-  .then(data => {
-    if (data.likes !== undefined && data.corazones !== undefined) {
-      document.getElementById("like-" + id).innerText = data.likes;
-      document.getElementById("heart-" + id).innerText = data.corazones;
-    }
-  })
-  .catch(err => console.error("Error:", err));
-}
-
-// Asignar eventos a botones
 document.querySelectorAll('.like-btn').forEach(btn=>{
-  btn.addEventListener('click', ()=> actualizarLikes(btn.dataset.id, 'like'));
+  btn.addEventListener('click', ()=>{
+    let id = btn.dataset.id;
+    fetch("likes.php", {
+      method:"POST",
+      headers:{'Content-Type':'application/x-www-form-urlencoded'},
+      body:"id="+id+"&tipo=like"
+    }).then(r=>r.json()).then(data=>{
+      document.getElementById("like-"+id).innerText = data.likes;
+    });
+  });
 });
 document.querySelectorAll('.heart-btn').forEach(btn=>{
-  btn.addEventListener('click', ()=> actualizarLikes(btn.dataset.id, 'corazon'));
+  btn.addEventListener('click', ()=>{
+    let id = btn.dataset.id;
+    fetch("likes.php", {
+      method:"POST",
+      headers:{'Content-Type':'application/x-www-form-urlencoded'},
+      body:"id="+id+"&tipo=corazon"
+    }).then(r=>r.json()).then(data=>{
+      document.getElementById("heart-"+id).innerText = data.corazones;
+    });
+  });
 });
 </script>
-
 </body>
 </html>
