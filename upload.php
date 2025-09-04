@@ -63,7 +63,7 @@ if (!empty($_FILES['archivo']['name'][0])) {
     if (!empty($errores)) {
         // Convertir array en una cadena para pasar por GET
         $mensajeError = urlencode(implode(" | ", $errores));
-        header("Location: index.php?error=$mensajeError");
+        header("Location: index.php");
         exit;
     }
 
