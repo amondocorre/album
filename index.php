@@ -139,9 +139,12 @@ while($row = $res->fetch_assoc()):
     <div class="mt-3">
         <h5><?= htmlspecialchars($row['nombre']) ?></h5>
         <p><?= htmlspecialchars($row['descripcion']) ?></p>
-       <button class="btn btn-light btn-lg like-btn" data-id="<?= $row['id'] ?>">👍 <span id="like-<?= $row['id'] ?>"><?= $row['likes'] ?></span></button>
-      <button class="btn btn-danger btn-lg heart-btn" data-id="<?= $row['id'] ?>">❤️ <span id="heart-<?= $row['id'] ?>"><?= $row['corazones'] ?></span></button>
-
+        <button class="btn btn-light btn-lg like-btn" data-id="<?= $row['id'] ?>">
+              👍 <span id="like-<?= $row['id'] ?>"><?= $row['likes'] ?></span>
+            </button>
+            <button class="btn btn-danger btn-lg heart-btn" data-id="<?= $row['id'] ?>">
+              ❤️ <span id="heart-<?= $row['id'] ?>"><?= $row['corazones'] ?></span>
+            </button>
     </div>
 </div>
 <?php 
