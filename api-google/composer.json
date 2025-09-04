@@ -1,0 +1,8 @@
+{
+    "require": {
+        "google/apiclient": "2.15",
+        "cloudinary/cloudinary_php": "2.11",
+        "guzzlehttp/psr7": "2.6",
+        "guzzlehttp/guzzle": "7.8"
+    }
+}

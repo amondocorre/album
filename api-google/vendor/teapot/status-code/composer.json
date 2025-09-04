@@ -1,0 +1,49 @@
+{
+  "name": "teapot/status-code",
+  "description": "PHP HTTP Response Status code library",
+  "license": "MIT",
+  "type": "library",
+  "keywords": [
+    "http"
+  ],
+  "authors": [
+    {
+      "name": "Barney Hanlon",
+      "email": "barney@shrikeh.net"
+    },
+    {
+      "name": "Andreas Möller",
+      "email": "am@localheinz.com"
+    }
+  ],
+  "homepage": "https://github.com/teapot-php/status-code",
+  "require": {
+    "php": "~7.4.0 || ~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0"
+  },
+  "require-dev": {
+    "ergebnis/composer-normalize": "^2.45.0",
+    "ergebnis/php-cs-fixer-config": "^6.39.0",
+    "phpstan/phpstan": "^2.1.0",
+    "phpstan/phpstan-deprecation-rules": "^2.0.1",
+    "phpstan/phpstan-strict-rules": "^2.0.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Teapot\\StatusCode\\": "src"
+    }
+  },
+  "archive": {
+    "exclude": [
+      "/*, !/src"
+    ]
+  },
+  "config": {
+    "allow-plugins": {
+      "ergebnis/composer-normalize": true
+    },
+    "platform": {
+      "php": "7.4.33"
+    },
+    "sort-packages": true
+  }
+}
