@@ -66,20 +66,32 @@
 <script>
 document.addEventListener('DOMContentLoaded', function(){
     const form = document.querySelector('#uploadModal form');
+    const spinner = document.getElementById('upload-loading');
+
     form.addEventListener('submit', function(e){
         const files = this.querySelector('input[type="file"]').files;
         const maxSize = 40 * 1024 * 1024; // 40MB
+        let tooBig = false;
+
         for(let i=0; i<files.length; i++){
             if(files[i].size > maxSize){
-                e.preventDefault();
-                const modal = new bootstrap.Modal(document.getElementById('fileTooLargeModal'));
-                modal.show();
+                tooBig = true;
                 break;
             }
+        }
+
+        if (tooBig) {
+            e.preventDefault();
+            const modal = new bootstrap.Modal(document.getElementById('fileTooLargeModal'));
+            modal.show();
+        } else {
+            // ✅ Mostrar spinner mientras se sube
+            spinner.style.display = "block";
         }
     });
 });
 </script>
+
 
 
 <!-- Barra superior -->
@@ -100,6 +112,13 @@ document.addEventListener('DOMContentLoaded', function(){
         <h5 class="modal-title">Subir Foto/Video</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
+            <div class="text-center my-3" id="upload-loading" style="display:none;">
+              <div class="spinner-border text-warning" role="status">
+                <span class="visually-hidden">Subiendo...</span>
+              </div>
+              <p class="mt-2">Subiendo archivo, por favor espera...</p>
+            </div>  
+
         <form action="upload.php" method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 <label>Nombre:</label>
@@ -107,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function(){
             </div>
             <div class="mb-3">
                 <label>Descripción:</label>
-                <textarea name="descripcion" class="form-control" required></textarea>
+                <textarea name="descripcion" class="form-control" ></textarea>
             </div>
             <div class="mb-3">
                 <label>Selecciona archivos (fotos o videos):</label>
