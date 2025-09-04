@@ -155,7 +155,7 @@ endwhile;
 
 
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselFotos" data-bs-slide="prev">
+ <button class="carousel-control-prev" type="button" data-bs-target="#carouselFotos" data-bs-slide="prev">
     <span class="carousel-control-prev-icon"></span>
   </button>
   <button class="carousel-control-next" type="button" data-bs-target="#carouselFotos" data-bs-slide="next">
