@@ -58,7 +58,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
-        El archivo seleccionado excede el tamaño máximo permitido de 40MB.  
+        El archivo seleccionado excede el tamaño máximo permitido   
         Por favor selecciona un archivo más pequeño.
       </div>
       <div class="modal-footer">
