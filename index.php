@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     form.addEventListener('submit', function(e){
         const files = this.querySelector('input[type="file"]').files;
-        const maxSize = 40 * 1024 * 1024; // 40MB
+        const maxSize = 60 * 1024 * 1024; // 40MB
         let tooBig = false;
 
         for(let i=0; i<files.length; i++){
