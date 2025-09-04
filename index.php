@@ -165,30 +165,30 @@ endwhile;
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+function actualizarLikes(id, tipo) {
+  fetch("like.php", {   // ✅ debe ser el archivo correcto
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: "id=" + id + "&tipo=" + tipo
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (data.likes !== undefined && data.corazones !== undefined) {
+      document.getElementById("like-" + id).innerText = data.likes;
+      document.getElementById("heart-" + id).innerText = data.corazones;
+    }
+  })
+  .catch(err => console.error("Error:", err));
+}
+
+// Asignar eventos a botones
 document.querySelectorAll('.like-btn').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    let id = btn.dataset.id;
-    fetch("likes.php", {
-      method:"POST",
-      headers:{'Content-Type':'application/x-www-form-urlencoded'},
-      body:"id="+id+"&tipo=like"
-    }).then(r=>r.json()).then(data=>{
-      document.getElementById("like-"+id).innerText = data.likes;
-    });
-  });
+  btn.addEventListener('click', ()=> actualizarLikes(btn.dataset.id, 'like'));
 });
 document.querySelectorAll('.heart-btn').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    let id = btn.dataset.id;
-    fetch("likes.php", {
-      method:"POST",
-      headers:{'Content-Type':'application/x-www-form-urlencoded'},
-      body:"id="+id+"&tipo=corazon"
-    }).then(r=>r.json()).then(data=>{
-      document.getElementById("heart-"+id).innerText = data.corazones;
-    });
-  });
+  btn.addEventListener('click', ()=> actualizarLikes(btn.dataset.id, 'corazon'));
 });
 </script>
+
 </body>
 </html>
