@@ -59,20 +59,20 @@ if (!empty($_FILES['archivo']['name'][0])) {
         }
     }
 
-    // 🔹 Mostrar alertas si hubo errores
+        // 🔹 Mostrar alertas si hubo errores
     if (!empty($errores)) {
-        foreach ($errores as $error) {
-            echo '<div class="alert alert-danger" role="alert">' . $error . '</div>';
-        }
-        echo '<a href="index.php" class="btn btn-primary mt-3">Volver</a>';
+        // Convertir array en una cadena para pasar por GET
+        $mensajeError = urlencode(implode(" | ", $errores));
+        header("Location: index.php?error=$mensajeError");
         exit;
     }
 
     // 🔹 Si todo salió bien, redirigir
-    header("Location: index.php");
+    header("Location: index.php?success=1");
     exit;
 
-} else {
+
+} /*else {
     echo '<div class="alert alert-warning" role="alert">No se seleccionaron archivos.</div>';
     echo '<a href="index.php" class="btn btn-primary mt-3">Volver</a>';
-}
+}*/

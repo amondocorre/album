@@ -214,4 +214,16 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 </script>
 </body>
+<?php if (isset($_GET['error'])): ?>
+  <div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
+    <?= htmlspecialchars($_GET['error']) ?>
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+<?php elseif (isset($_GET['success'])): ?>
+  <div class="alert alert-success alert-dismissible fade show m-3" role="alert">
+    ✅ Archivo(s) subido(s) correctamente.
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+<?php endif; ?>
+
 </html>
